@@ -7,14 +7,12 @@ type HeroImagePanelProps = {
   imageSrc: string;
   monthLabel: string;
   yearLabel: string;
-  primary: string;
 };
 
 export default function HeroImagePanel({
   imageSrc,
   monthLabel,
   yearLabel,
-  primary,
 }: HeroImagePanelProps) {
   return (
     <motion.div

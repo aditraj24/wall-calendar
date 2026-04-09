@@ -4,18 +4,22 @@ type NotesPanelProps = {
   selectedKey: string | null;
   noteValue: string;
   onChange: (value: string) => void;
+  onClear: () => void;
   primary: string;
+  className?: string;
 };
 
 export default function NotesPanel({
   selectedKey,
   noteValue,
   onChange,
+  onClear,
   primary,
+  className,
 }: NotesPanelProps) {
   return (
     <div
-      className="rounded-3xl border bg-white p-5 shadow-sm"
+      className={`rounded-3xl border bg-white p-5 shadow-sm ${className || ""}`}
       style={{ borderColor: `${primary}30` }}
     >
       <div className="mb-4">
@@ -37,16 +41,27 @@ export default function NotesPanel({
           Select a complete date range to write a note.
         </div>
       ) : (
-        <textarea
-          value={noteValue}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder="Write your note here..."
-          rows={8}
-          className="h-64 w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm outline-none ring-0 transition focus:border-slate-400"
-          style={{
-            boxShadow: `inset 0 0 0 1px ${primary}10`,
-          }}
-        />
+        <>
+          <textarea
+            value={noteValue}
+            onChange={(e) => onChange(e.target.value)}
+            placeholder="Write your note here..."
+            rows={8}
+            className="h-64 w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm outline-none ring-0 transition focus:border-slate-400"
+            style={{
+              boxShadow: `inset 0 0 0 1px ${primary}10`,
+            }}
+          />
+          {noteValue.trim() ? (
+            <button
+              type="button"
+              onClick={onClear}
+              className="mt-3 inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-slate-400 hover:bg-slate-50"
+            >
+              Clear note
+            </button>
+          ) : null}
+        </>
       )}
     </div>
   );

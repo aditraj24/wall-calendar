@@ -3,7 +3,7 @@ import "./globals.css";
 
 
 export const metadata: Metadata = {
-  title: "Wall Calender",
+  title: "TUF Wall Calender",
   description: "Wall Calender with multiple features",
 };
 
